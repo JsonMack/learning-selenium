@@ -17,7 +17,10 @@ public class SeleniumItJobFairApplication {
     }
 
     public SeleniumItJobFairApplication() {
-        this(new ChromeDriver(ChromeDriverService.createDefaultService(),
+        this(new ChromeDriver(new ChromeDriverService.Builder()
+                .withSilent(true)
+                .usingAnyFreePort()
+                .build(),
                 new ChromeOptions().addArguments("--incognito")));
     }
 

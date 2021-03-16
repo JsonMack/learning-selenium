@@ -12,12 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Jason
@@ -95,5 +90,7 @@ public class SeleniumApplicationTest {
         }
 
         System.out.println("Current url after redirect: " + driver.getTitle());
+
+        driver.quit();
     }
 }
