@@ -2,10 +2,10 @@ package com.jsonmack.selenium;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.gen5.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -15,24 +15,69 @@ import java.util.Arrays;
 import java.util.Queue;
 
 /**
+ * A
+ *
  * @author Jason
  */
 @RunWith(JUnit4.class)
 public class SeleniumApplicationTest {
 
-    private static SeleniumItJobFairApplication application;
+/**
+ * Gherkin
+ *      Uses *keywords* for structure
+ *          Can use various languages
+ *          Keywords are
+ *              Feature
+ *                  The primary or root keyword used in a Gherkin document and must be followed by :
+ *
+ *              Rule
+ *                  Introduced in version 6
+ *                  Contains 1 or more Scenarios
+ *              Example (Scenario)
+ *                  Scenario is a synonym for example.
+ *                  Should consist of the following in order
+ *                      Given -> When -> Then
+ *              Steps
+ *                  Given
+ *                  When
+ *                  Then
+ *                  And
+ *                  But
+ *                  * for All (assumed)
+ *              Background
+ *              Scenario Outline (Scenario Template)
+ *              Examples (Scenarios)
+ *                  Recommended 3-5 steps per example to keep it short and sweet.
+ *          Secondary Keywords
+ *              """ -   Doctypes
+ *              | -     Data tables
+ *              @ -     Tags
+ *              # -     Comments
+ *              : -     Denotes split or delimiter for keyword
+ *          Comments can be used starting with #
+ *              Block comments are not supported
+ *      The segment of code following a *keyword* is a step definition
+ *
+ */
+
+    private static final String REGISTER_URL = "http://127.0.0.1:8000/pages/student/register";
+
+    private final SeleniumItJobFairApplication application = new SeleniumItJobFairApplication();
+
+    private final WebDriver driver = application.getDriver();
 
     @BeforeClass
     public static void init() {
         System.setProperty("webdriver.chrome.driver", "/opt/WebDriver/bin/chromedriver");
+    }
 
-        application = new SeleniumItJobFairApplication();
+    @BeforeAll
+    public void beforeAll() {
+        application.getDriver().get(REGISTER_URL);
     }
 
     @Test
     public void studentId() throws InterruptedException {
-        WebDriver driver = application.getDriver();
-
         String registerUrl = "http://127.0.0.1:8000/pages/student/register";
 
         driver.get(registerUrl);
@@ -83,8 +128,9 @@ public class SeleniumApplicationTest {
 
         form.submit();
 
+
         while (driver.getCurrentUrl().equals(registerUrl)) {
-            Thread.sleep(2_000);
+            Thread.sleep(1_000);
 
             System.out.println("Current url is still register, waiting for redirect...");
         }
