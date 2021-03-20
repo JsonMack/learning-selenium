@@ -1,0 +1,37 @@
+Gherkin
+   Uses keywords for structure
+       Can use various languages
+       Keywords are
+           Feature
+               The primary or root keyword used in a Gherkin document and must be followed by :
+
+           Rule
+               Introduced in version 6
+               Contains 1 or more Scenarios
+           Example (Scenario)
+               Scenario is a synonym for example.
+               Should consist of the following in order
+                   Given -> When -> Then
+           Steps
+               Given
+               When
+               Then
+               And
+               But
+                for All (assumed)
+           Background
+           Scenario Outline (Scenario Template)
+           Examples (Scenarios)
+               Recommended 3-5 steps per example to keep it short and sweet.
+       Secondary Keywords
+           """ -   Doctypes
+           |   Data tables
+           @ -     Tags
+           # -     Comments
+           : -     Denotes split or delimiter for keyword
+       Comments can be used starting with #
+           Block comments are not supported
+   The segment of code following a keyword is a step definition
+
+       
+ 
