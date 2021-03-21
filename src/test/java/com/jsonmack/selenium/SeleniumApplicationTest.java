@@ -46,12 +46,12 @@ public class SeleniumApplicationTest {
     public void successful() {
         RegisterPage page = new RegisterPage(driver);
 
-        page.fill("w0270165", "Jason", "MacKeigan", "Institute of Technology Campus", "2022", "1", true, true, true, true,
+        page.fill("w0270165", "Jason", "MacKeigan", "Institute of Technology Campus", "2022", "IT Programming", true, true, true, true,
                 Arrays.asList("https://google.com/", "https://bing.com", "https://askjeeves.com"));
 
         page.submit();
 
-        FluentWait<WebDriver> wait = new WebDriverWait(driver, 5)
+        FluentWait<WebDriver> wait = new WebDriverWait(driver, 10)
                 .pollingEvery(Duration.ofSeconds(1));
 
         wait.until(ExpectedConditions.titleIs("Student Email Verification"));
