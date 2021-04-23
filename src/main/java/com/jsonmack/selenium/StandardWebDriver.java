@@ -5,18 +5,26 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.Closeable;
+import java.io.IOException;
+
 /**
  * @author Jason MacKeigan
  */
-public class SeleniumItJobFairApplication {
+public class StandardWebDriver implements Closeable, AutoCloseable {
 
     private final WebDriver driver;
 
-    public SeleniumItJobFairApplication(WebDriver driver) {
+    static {
+        System.setProperty("webdriver.chrome.driver", "/opt/WebDriver/bin/chromedriver");
+
+    }
+
+    public StandardWebDriver(WebDriver driver) {
         this.driver = driver;
     }
 
-    public SeleniumItJobFairApplication() {
+    public StandardWebDriver() {
         this(new ChromeDriver(new ChromeDriverService.Builder()
                 .withSilent(true)
                 .usingAnyFreePort()
@@ -26,5 +34,10 @@ public class SeleniumItJobFairApplication {
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    @Override
+    public void close() throws IOException {
+        driver.quit();
     }
 }
