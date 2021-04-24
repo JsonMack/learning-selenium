@@ -1,6 +1,7 @@
-package com.jsonmack.selenium;
+package com.jsonmack.selenium.pages.ca.itjobfair.pages.student.register;
 
-import com.jsonmack.selenium.pages.RegisterPage;
+import com.jsonmack.selenium.StandardWebDriver;
+import com.jsonmack.selenium.pages.ca.itjobfair.pages.student.register.RegisterPage;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ import java.util.Arrays;
  *
  * @author Jason
  */
-public class SeleniumApplicationTest {
+public class RegisterPageTest {
 
     private static final String REGISTER_URL = "http://127.0.0.1:8000/pages/student/register";
 

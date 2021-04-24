@@ -1,4 +1,4 @@
-package com.jsonmack.selenium.pages;
+package com.jsonmack.selenium.pages.ca.itjobfair.pages.student.register;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

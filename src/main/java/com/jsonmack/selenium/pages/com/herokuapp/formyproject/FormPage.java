@@ -3,6 +3,7 @@ package com.jsonmack.selenium.pages.com.herokuapp.formyproject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.*;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class FormPage {
             @FindBy(how = How.ID, id = "checkbox-2"),
             @FindBy(how = How.ID, id = "checkbox-3")
     })
-    private WebElement sex;
+    private List<WebElement> sex;
 
     @FindBy(how = How.ID, id = "select-menu")
     private WebElement yearsOfExperience;
@@ -40,46 +41,38 @@ public class FormPage {
     @FindBy(how = How.ID, id = "datepicker")
     private WebElement date;
 
-    public FormPage(WebElement firstName, WebElement lastName, WebElement jobTitle, List<WebElement> highestLevelOfEducation,
-                    WebElement sex, WebElement yearsOfExperience, WebElement date) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.jobTitle = jobTitle;
-        this.highestLevelOfEducation = highestLevelOfEducation;
-        this.sex = sex;
-        this.yearsOfExperience = yearsOfExperience;
-        this.date = date;
-    }
+    @FindBy(how = How.CLASS_NAME, className = "btn")
+    private WebElement submit;
 
     public FormPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement getFirstName() {
-        return firstName;
+    public void fill(String firstName, String lastName, String jobTitle, String highestLevelOfEducation, String sex, String yearsOfExperience, String date) {
+        this.firstName.sendKeys(firstName);
+        this.lastName.sendKeys(lastName);
+        this.jobTitle.sendKeys(jobTitle);
+
+        this.highestLevelOfEducation.stream()
+                .filter(webElement -> webElement.getAttribute("id").equals(highestLevelOfEducation))
+                .findAny()
+                .orElseThrow()
+                .click();
+
+        this.sex.stream()
+                .filter(webElement -> webElement.getAttribute("id").equals(sex))
+                .findAny()
+                .orElseThrow()
+                .click();
+
+        Select select = new Select(this.yearsOfExperience);
+
+        select.selectByValue(yearsOfExperience);
+
+        this.date.sendKeys(date);
     }
 
-    public WebElement getLastName() {
-        return lastName;
-    }
-
-    public WebElement getJobTitle() {
-        return jobTitle;
-    }
-
-    public List<WebElement> getHighestLevelOfEducation() {
-        return highestLevelOfEducation;
-    }
-
-    public WebElement getSex() {
-        return sex;
-    }
-
-    public WebElement getYearsOfExperience() {
-        return yearsOfExperience;
-    }
-
-    public WebElement getDate() {
-        return date;
+    public void submit() {
+        submit.click();
     }
 }
