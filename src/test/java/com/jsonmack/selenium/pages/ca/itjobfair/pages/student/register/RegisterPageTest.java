@@ -1,7 +1,6 @@
 package com.jsonmack.selenium.pages.ca.itjobfair.pages.student.register;
 
-import com.jsonmack.selenium.StandardWebDriver;
-import com.jsonmack.selenium.pages.ca.itjobfair.pages.student.register.RegisterPage;
+import com.jsonmack.selenium.WebDriverFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,17 +21,13 @@ public class RegisterPageTest {
 
     private static final String REGISTER_URL = "http://127.0.0.1:8000/pages/student/register";
 
-    private static StandardWebDriver application;
-
     private static WebDriver driver;
 
     @BeforeAll
     public static void beforeAll() {
         System.setProperty("webdriver.chrome.driver", "/opt/WebDriver/bin/chromedriver");
 
-        application = new StandardWebDriver();
-
-        driver = application.getDriver();
+        driver = WebDriverFactory.local();
 
         driver.get(REGISTER_URL);
     }

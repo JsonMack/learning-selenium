@@ -1,7 +1,6 @@
 package com.jsonmack.selenium.pages.com.herokuapp.formyproject;
 
-import com.jsonmack.selenium.StandardWebDriver;
-import org.junit.jupiter.api.Assertions;
+import com.jsonmack.selenium.WebDriverFactory;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,7 +16,7 @@ public class DatePickerPageTest {
 
     @Test
     public void assertValidInput() {
-        WebDriver driver = new StandardWebDriver().getDriver();
+        WebDriver driver = WebDriverFactory.local();
 
         driver.get("https://formy-project.herokuapp.com/datepicker");
 
@@ -31,6 +30,8 @@ public class DatePickerPageTest {
 
         wait.pollingEvery(Duration.ofMillis(200))
                 .until(ExpectedConditions.textToBePresentInElementValue(page.getDatepicker(), "01/01/1970"));
+
+        driver.close();
     }
 
 }

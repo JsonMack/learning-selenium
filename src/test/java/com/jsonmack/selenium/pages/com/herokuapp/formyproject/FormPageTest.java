@@ -1,6 +1,6 @@
 package com.jsonmack.selenium.pages.com.herokuapp.formyproject;
 
-import com.jsonmack.selenium.StandardWebDriver;
+import com.jsonmack.selenium.WebDriverFactory;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,7 +16,7 @@ public class FormPageTest {
 
     @Test
     public void fill() {
-        WebDriver driver = new StandardWebDriver().getDriver();
+        WebDriver driver = WebDriverFactory.local();
 
         driver.get("https://formy-project.herokuapp.com/form");
 
@@ -31,6 +31,7 @@ public class FormPageTest {
         wait.pollingEvery(Duration.ofSeconds(1))
                 .until(ExpectedConditions.urlContains("/thanks"));
 
+        driver.close();
     }
 
 }
