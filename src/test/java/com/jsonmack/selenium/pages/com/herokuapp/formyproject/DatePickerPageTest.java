@@ -31,7 +31,7 @@ public class DatePickerPageTest {
         wait.pollingEvery(Duration.ofMillis(200))
                 .until(ExpectedConditions.textToBePresentInElementValue(page.getDatepicker(), "01/01/1970"));
 
-        driver.close();
+        driver.quit();
     }
 
 }

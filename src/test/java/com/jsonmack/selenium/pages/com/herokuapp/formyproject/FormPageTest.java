@@ -31,7 +31,7 @@ public class FormPageTest {
         wait.pollingEvery(Duration.ofSeconds(1))
                 .until(ExpectedConditions.urlContains("/thanks"));
 
-        driver.close();
+        driver.quit();
     }
 
 }
