@@ -2,3 +2,6 @@
 *.iml
 logfile.txt
 target/
+
+src/test/resources/application.json
+src/main/resources/application.json
