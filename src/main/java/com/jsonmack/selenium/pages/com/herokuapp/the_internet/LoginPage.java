@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * @author Jason MacKeigan
@@ -24,17 +25,22 @@ public class LoginPage extends SeleniumPage {
     @FindBy(how = How.XPATH, xpath = "//*[@id=\"login\"]")
     private WebElement button;
 
+    @FindBy(how = How.ID, id = "flash")
+    private WebElement errorMessage;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public LoginPageWithErrors withErrors(WebDriver driver, String username, String password) {
+    public void credentials(String username, String password) {
         type(username, this.username);
         type(password, this.password);
         click(button);
+    }
 
-        return new LoginPageWithErrors(driver);
+    public boolean isErrorMessageDisplayed() {
+        return errorMessage.isDisplayed();
     }
 
 }

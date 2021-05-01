@@ -1,7 +1,7 @@
 package com.jsonmack.selenium.pages.com.herokuapp.the_internet;
 
 import com.jsonmack.selenium.WebDriverFactory;
-import com.jsonmack.selenium.pages.Page;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Jason MacKeigan
@@ -21,24 +19,44 @@ class LoginPageTest {
 
     private static final String LOGGED_IN = "https://the-internet.herokuapp.com/secure";
 
+    private static final String CORRECT_PASSWORD = "SuperSecretPassword!";
+
+    private static final String CORRECT_USERNAME = "tomsmith";
+
+    private static final String INCORRECT_PASSWORD = "foo";
+
+    private static final WebDriver driver = WebDriverFactory.local();
+
+    @AfterAll
+    static void afterAll() {
+        driver.quit();
+    }
+
     @Test
     public void successful() {
-        WebDriver driver = WebDriverFactory.local();
-
         LoginPage loginPage = new LoginPage(driver);
 
         loginPage.visit(URL);
 
-        LoginPageWithErrors withErrors = loginPage.withErrors(driver, "tomsmith", "SuperSecretPassword!");
+        loginPage.credentials(CORRECT_USERNAME, CORRECT_PASSWORD);
 
-        WebDriverWait wait = new WebDriverWait(driver, 3);
-
-        wait.pollingEvery(Duration.ofSeconds(1))
+        new WebDriverWait(driver, 3)
+                .pollingEvery(Duration.ofMillis(500))
                 .until(ExpectedConditions.urlToBe(LOGGED_IN));
 
-        Assertions.assertTrue(withErrors.isErrorDisplayed());
+        SecurePage securePage = new SecurePage(driver);
 
-        driver.quit();
+        Assertions.assertTrue(securePage.isFlashMessageDisplayed());
+    }
+
+    @Test
+    public void failed() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.visit(URL);
+        loginPage.credentials(CORRECT_USERNAME, INCORRECT_PASSWORD);
+
+        Assertions.assertTrue(loginPage.isErrorMessageDisplayed());
     }
 
 }

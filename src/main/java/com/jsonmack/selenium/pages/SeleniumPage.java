@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
  */
 public class SeleniumPage implements Page {
 
-    private final WebDriver driver;
+    protected final WebDriver driver;
 
     public SeleniumPage(WebDriver driver) {
         this.driver = driver;
