@@ -1,4 +1,4 @@
-package com.jsonmack.selenium.pages.com.herokuapp.formyproject;
+package com.jsonmack.selenium.pages.com.herokuapp.formy_project;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

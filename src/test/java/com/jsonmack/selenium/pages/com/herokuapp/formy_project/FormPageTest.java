@@ -1,4 +1,4 @@
-package com.jsonmack.selenium.pages.com.herokuapp.formyproject;
+package com.jsonmack.selenium.pages.com.herokuapp.formy_project;
 
 import com.jsonmack.selenium.WebDriverFactory;
 import org.junit.Test;

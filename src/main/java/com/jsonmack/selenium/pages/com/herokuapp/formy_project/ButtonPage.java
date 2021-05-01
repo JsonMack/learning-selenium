@@ -1,4 +1,4 @@
-package com.jsonmack.selenium.pages.com.herokuapp.formyproject;
+package com.jsonmack.selenium.pages.com.herokuapp.formy_project;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,33 +41,5 @@ public class ButtonPage {
 
     public WebElement getPrimary() {
         return primary;
-    }
-
-    public WebElement getSuccess() {
-        return success;
-    }
-
-    public WebElement getInfo() {
-        return info;
-    }
-
-    public WebElement getWarning() {
-        return warning;
-    }
-
-    public WebElement getDanger() {
-        return danger;
-    }
-
-    public WebElement getLeft() {
-        return left;
-    }
-
-    public WebElement getMiddle() {
-        return middle;
-    }
-
-    public WebElement getRight() {
-        return right;
     }
 }
